@@ -1,0 +1,22 @@
+<div class="row mt-5">
+  <div class="col-md-6 m-auto">
+    <div class="card card-body text-center">
+      <h1 class="text-left">Admin Dashboard</h1>
+      <h2 class="text-left">Current Active Sessions</h2>
+      <% Object.entries(sessions).forEach(([sessionId, session])=> { %>
+        <div class="text-left">
+          <strong >Session ID:</strong>
+          <%= sessionId %>
+        </div>
+        <div class="text-left">
+            <strong>User ID:</strong>
+            <%= session.passport.user %><br>
+              <form action="/admin" method="POST" class="m-0 p-0">
+                <input type="hidden" name="sessionId" value="<%= sessionId %>">
+                <button type="submit" class="btn btn-link m-0 p-0">Revoke Session</button>
+              </form>
+        </div>
+        <% }); %>
+    </div>
+  </div>
+</div>
